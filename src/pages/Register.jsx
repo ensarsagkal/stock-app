@@ -10,8 +10,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
 import { object, string } from "yup";
 import TextField from "@mui/material/TextField";
+import useAuthCalls from "../service/useAuthCalls";
 
 const Register = () => {
+  const {register}=useAuthCalls
   const navigate = useNavigate();
   const registerSchema = object({
     username: string().required("Lütfen kullanıcı adı giriniz"),
@@ -80,7 +82,7 @@ const Register = () => {
             validationSchema={registerSchema}
             onSubmit={(values, actions) => {
               //TODO login(post) istegi
-              // register(values);
+              register(values);
               actions.resetForm();
               actions.setSubmitting(false);
             }}
