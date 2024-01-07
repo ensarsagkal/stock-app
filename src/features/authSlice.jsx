@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: "",
-  first_name: "",
-  last_name: "",
+  firstName: "",
+  lastName: "",
   loading: false,
   error: false,
   token: "",
@@ -23,9 +23,9 @@ const authSlice = createSlice({
     },
     registerSuccess: (state, { payload }) => {
       state.loading = false;
-      state.user = payload.user.username;
-      state.first_name = payload.first_name.firstName;
-      state.last_name = payload.last_name.lastName;
+      state.user = payload.data.username;
+      state.firstName = payload.data.firstName;
+      state.lastName = payload.data.lastName;
       state.token = payload.token;
     },
     fetchFail: (state) => {

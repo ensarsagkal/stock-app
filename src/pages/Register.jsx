@@ -17,8 +17,8 @@ const Register = () => {
   const navigate = useNavigate();
   const registerSchema = object({
     username: string().required("Lütfen kullanıcı adı giriniz"),
-    first_name: string().required("Lütfen adınızı giriniz"),
-    last_name: string().required("Lütfen soyadınızı  giriniz"),
+    firstName: string().required("Lütfen adınızı giriniz"),
+    lastName: string().required("Lütfen soyadınızı  giriniz"),
     email: string()
       .email("Lütfen geçerli bir email giriniz")
       .required("Email girişi zorunludur"),
@@ -74,8 +74,8 @@ const Register = () => {
           <Formik
             initialValues={{
               username: "",
-              first_name: "",
-              last_name: "",
+              firstName: "",
+              lastName: "",
               email: "",
               password: "",
             }}
@@ -104,27 +104,27 @@ const Register = () => {
                   />
                   <TextField
                     label="First Name"
-                    name="first_name"
+                    name="firstName"
                     id="firstName"
                     type="text"
                     variant="outlined"
-                    value={values.first_name}
+                    value={values.firstName}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    error={touched.first_name && Boolean(errors.first_name)}
-                    helperText={errors.first_name}
+                    error={touched.firstName && Boolean(errors.firstName)}
+                    helperText={errors.firstName}
                   />
                   <TextField
                     label="Last Name"
-                    name="last_name"
+                    name="lastName"
                     id="last_name"
                     type="text"
                     variant="outlined"
-                    value={values.last_name}
+                    value={values.lastName}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    error={touched.last_name && Boolean(errors.last_name)}
-                    helperText={errors.last_name}
+                    error={touched.lastName && Boolean(errors.lastName)}
+                    helperText={errors.lastName}
                   />
                   <TextField
                     label="Email"
