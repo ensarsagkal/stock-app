@@ -13,7 +13,7 @@ import TextField from "@mui/material/TextField";
 import useAuthCalls from "../service/useAuthCalls";
 
 const Register = () => {
-  const {register}=useAuthCalls
+  const {register}=useAuthCalls()
   const navigate = useNavigate();
   const registerSchema = object({
     username: string().required("Lütfen kullanıcı adı giriniz"),
@@ -74,8 +74,8 @@ const Register = () => {
           <Formik
             initialValues={{
               username: "",
-              firstname: "",
-              lastname: "",
+              first_name: "",
+              last_name: "",
               email: "",
               password: "",
             }}
@@ -108,7 +108,7 @@ const Register = () => {
                     id="firstName"
                     type="text"
                     variant="outlined"
-                    value={values.firstname}
+                    value={values.first_name}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     error={touched.first_name && Boolean(errors.first_name)}
@@ -120,7 +120,7 @@ const Register = () => {
                     id="last_name"
                     type="text"
                     variant="outlined"
-                    value={values.lastname}
+                    value={values.last_name}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     error={touched.last_name && Boolean(errors.last_name)}

@@ -31,10 +31,11 @@ const useAuthCalls = () => {
   const register = async (registerInfo) => {
     try {
       const {data}=await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/users`,registerInfo
+        `${process.env.REACT_APP_BASE_URL}/users/`,registerInfo
       )
       dispatch(registerSuccess(data))
       toastSuccessNotify("Register işlemi başarılı")
+      console.log(data);
       navigate("/stock")
     } catch (error) {
       dispatch(fetchFail())
