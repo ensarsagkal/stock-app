@@ -15,6 +15,7 @@ const useAuthCalls = () => {
         `${process.env.REACT_APP_BASE_URL}/auth/login/`,
         userInfo
       )
+      console.log(data);
       dispatch(loginSucces(data))
       toastSuccessNotify("Login işlemi basarili.")
       navigate("/stock")

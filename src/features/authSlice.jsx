@@ -24,8 +24,8 @@ const authSlice = createSlice({
     registerSuccess: (state, { payload }) => {
       state.loading = false;
       state.user = payload.user.username;
-      state.first_name = payload.user.firstName;
-      state.last_name = payload.user.lastName;
+      state.first_name = payload.first_name.firstName;
+      state.last_name = payload.last_name.lastName;
       state.token = payload.token;
     },
     fetchFail: (state) => {
