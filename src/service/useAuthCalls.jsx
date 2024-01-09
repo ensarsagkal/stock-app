@@ -42,7 +42,7 @@ const useAuthCalls = () => {
       //   `${process.env.REACT_APP_BASE_URL}/users/`,
       //   registerInfo
       // );
-      const {data}= await axiosPublic("/users",registerInfo)
+      const {data}= await axiosPublic.post("/users",registerInfo)
       dispatch(registerSuccess(data));
       toastSuccessNotify("Register işlemi başarılı");
 
