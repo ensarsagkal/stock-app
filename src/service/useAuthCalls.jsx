@@ -8,11 +8,12 @@ import {
   logoutSuccess,
   registerSuccess,
 } from "../features/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const useAuthCalls = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.auth);
 
   const login = async (userInfo) => {
     dispatch(fetchStart());
@@ -53,11 +54,15 @@ const useAuthCalls = () => {
   const logout = async () => {
     dispatch(fetchStart());
     try {
-      await axios(`${process.env.REACT_APP_BASE_URL}/auth/logout/`);
+      await axios(`${process.env.REACT_APP_BASE_URL}/auth/logout/`, {
+        headers: { Authorization: `Token ${token}` },
+      });
       dispatch(logoutSuccess());
       toastSuccessNotify("Logout işlemi başarılı");
-      navigate("/");
-    } catch (error) {}
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("Logout işlemi başarısız oldu");
+    }
   };
 
   return { login, register, logout };
