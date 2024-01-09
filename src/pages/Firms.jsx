@@ -9,6 +9,7 @@ import useStockCalls from '../service/useStockCalls';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Grid } from '@mui/material';
+import AddFirm from '../components/AddFirm';
 
 export default function Firms() {
   const {getFirms,deleteFirm}= useStockCalls()
@@ -47,6 +48,7 @@ export default function Firms() {
     </Card>
         </Grid>
       ))}
+      <AddFirm/>
     </Grid>
   );
 }
