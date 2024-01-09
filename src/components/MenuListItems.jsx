@@ -50,7 +50,10 @@ const navigate=useNavigate()
   return (
     <List >
     {icons.map((item, index) => (
-      <ListItem key={index} disablePadding onClick={()=>navigate(item.url)}>
+      <ListItem sx={{color:"white" ,
+      '&:hover': {
+        backgroundColor: 'red',
+      },}} key={index} disablePadding onClick={()=>navigate(item.url)}>
         <ListItemButton>
           <ListItemIcon sx={{color:"white"}}>{item.icon}</ListItemIcon>
           <ListItemText primary={item.title}  sx={{color:"white"}}/>
