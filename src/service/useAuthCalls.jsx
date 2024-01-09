@@ -9,20 +9,22 @@ import {
   registerSuccess,
 } from "../features/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import useAxios from "./useAxios";
 
 const useAuthCalls = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
+  const {axiosWithToken,axiosPublic}=useAxios()
 
   const login = async (userInfo) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/auth/login/`,
-        userInfo
-      );
-      console.log(data);
+      // const { data } = await axios.post(
+      //   `${process.env.REACT_APP_BASE_URL}/auth/login/`,
+      //   userInfo
+      // );
+      const {data}= await axiosPublic.post("/auth/login/",userInfo)
       dispatch(loginSucces(data));
       toastSuccessNotify("Login işlemi basarili.");
       navigate("/stock");
@@ -36,10 +38,11 @@ const useAuthCalls = () => {
   const register = async (registerInfo) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/users/`,
-        registerInfo
-      );
+      // const { data } = await axios.post(
+      //   `${process.env.REACT_APP_BASE_URL}/users/`,
+      //   registerInfo
+      // );
+      const {data}= await axiosPublic("/users",registerInfo)
       dispatch(registerSuccess(data));
       toastSuccessNotify("Register işlemi başarılı");
 
@@ -54,9 +57,10 @@ const useAuthCalls = () => {
   const logout = async () => {
     dispatch(fetchStart());
     try {
-      await axios(`${process.env.REACT_APP_BASE_URL}/auth/logout/`, {
-        headers: { Authorization: `Token ${token}` },
-      });
+      // await axios(`${process.env.REACT_APP_BASE_URL}/auth/logout/`, {
+      //   headers: { Authorization: `Token ${token}` },
+      // });
+      await axiosWithToken("/auth/logout/")
       dispatch(logoutSuccess());
       toastSuccessNotify("Logout işlemi başarılı");
     } catch (error) {
