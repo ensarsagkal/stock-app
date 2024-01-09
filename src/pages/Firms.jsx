@@ -7,6 +7,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import useStockCalls from '../service/useStockCalls';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Grid } from '@mui/material';
 
 export default function Firms() {
   const {getFirms}= useStockCalls()
@@ -15,27 +17,35 @@ export default function Firms() {
   
  
   }, [])
-  
+  const {firms}= useSelector(state=>state.stock)
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Grid container spacing={3}>
+      {firms.map((firm,index)=>(
+        <Grid  item key={index} >
+          <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         sx={{ height: 140 }}
-        image="/static/images/cards/contemplative-reptile.jpg"
-        title="green iguana"
+        image={firm.image}
+        title={firm.name}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+          {firm.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+         {firm.address}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+         {firm.phone}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button size="small">Edit</Button>
+        <Button size="small">Delete</Button>
       </CardActions>
     </Card>
+        </Grid>
+      ))}
+    </Grid>
   );
 }
