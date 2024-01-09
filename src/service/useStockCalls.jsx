@@ -11,12 +11,22 @@ const getFirms= async()=>{
     try {
         const {data}= await axiosWithToken("/firms/")
         dispatch(firmsSuccess(data))
-        console.log(data);
+        // console.log(data);
     } catch (error) {
         
     }
 }
-  return {getFirms}
+const deleteFirm=async(id)=>{
+    dispatch(fetchStart())
+    try {
+        await axiosWithToken.delete(`/firms/${id}`) 
+        getFirms()
+        
+    } catch (error) {
+        
+    }
+}
+  return {getFirms,deleteFirm}
 
 }
 

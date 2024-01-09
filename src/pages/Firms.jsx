@@ -11,12 +11,13 @@ import { useSelector } from 'react-redux';
 import { Grid } from '@mui/material';
 
 export default function Firms() {
-  const {getFirms}= useStockCalls()
+  const {getFirms,deleteFirm}= useStockCalls()
   useEffect(() => {
     getFirms()
   
  
   }, [])
+  
   const {firms}= useSelector(state=>state.stock)
   return (
     <Grid container spacing={3}>
@@ -41,7 +42,7 @@ export default function Firms() {
       </CardContent>
       <CardActions>
         <Button size="small">Edit</Button>
-        <Button size="small">Delete</Button>
+        <Button size="small"onClick={()=>deleteFirm(firm._id)}>Delete</Button>
       </CardActions>
     </Card>
         </Grid>
