@@ -25,6 +25,17 @@ const deleteFirm=async(id)=>{
     } catch (error) {
         
     }
+
+
+}
+const addFirm =async(firmInfo)=>{
+    dispatch(fetchStart())
+    try {
+        
+    } catch (error) {
+        
+    }
+
 }
   return {getFirms,deleteFirm}
 

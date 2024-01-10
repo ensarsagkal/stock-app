@@ -11,6 +11,8 @@ import { useSelector } from 'react-redux';
 import { Grid } from '@mui/material';
 import AddFirm from '../components/AddFirm';
 
+import ModalFirm from '../components/ModalFirm';
+
 export default function Firms() {
   const {getFirms,deleteFirm}= useStockCalls()
   useEffect(() => {
@@ -22,6 +24,7 @@ export default function Firms() {
   const {firms}= useSelector(state=>state.stock)
   return (
     <Grid container spacing={3}>
+      <ModalFirm/>
       {firms.map((firm,index)=>(
         <Grid  item key={index} >
           <Card sx={{ maxWidth: 345 }}>
@@ -48,7 +51,8 @@ export default function Firms() {
     </Card>
         </Grid>
       ))}
-      <AddFirm/>
+      
+      
     </Grid>
   );
 }
