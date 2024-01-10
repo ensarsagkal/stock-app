@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 
 import { Formik, Form } from "formik";
 import { object, string, number } from "yup";
+import useStockCalls from "../service/useStockCalls";
 
 export const AddSchema = object({
   name: string().required("Marka adı zorunludur"),
@@ -15,7 +16,8 @@ export const AddSchema = object({
     .required("Url zorunludur"),
 });
 
-const AddFirm = () => {
+const AddFirm = ({handleClose}) => {
+  const {addFirm}= useStockCalls()
   return (
     <Formik
     initialValues={{
@@ -28,9 +30,10 @@ const AddFirm = () => {
     validationSchema={AddSchema}
     onSubmit={(values, actions) => {
       //TODO login(post) istegi
-    //   addFirm(values);
+      addFirm(values);
       actions.resetForm();
       actions.setSubmitting(false);
+      handleClose()
     }}
     >
         {({ values, handleChange, errors, touched, handleBlur })=>(

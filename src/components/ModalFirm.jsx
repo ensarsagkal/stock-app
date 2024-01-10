@@ -26,7 +26,7 @@ export default function ModalFirm() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button onClick={handleOpen}>Add Firm</Button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -42,7 +42,7 @@ export default function ModalFirm() {
       >
         <Fade in={open}>
           <Box sx={style}>
-            <AddFirm/>
+            <AddFirm handleClose={handleClose}/>
           </Box>
         </Fade>
       </Modal>

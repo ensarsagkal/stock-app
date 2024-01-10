@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { fetchStart, firmsSuccess } from '../features/stockSlice'
 import useAxios from './useAxios'
+import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 
 const useStockCalls = () => {
 const dispatch = useDispatch()
@@ -31,13 +32,15 @@ const deleteFirm=async(id)=>{
 const addFirm =async(firmInfo)=>{
     dispatch(fetchStart())
     try {
-        
+        const {data}= await axiosWithToken.post("/firms",firmInfo)
+        getFirms()
+        toastSuccessNotify("Ekleme işlemi başarılı");
     } catch (error) {
         
     }
 
 }
-  return {getFirms,deleteFirm}
+  return {getFirms,deleteFirm,addFirm}
 
 }
 

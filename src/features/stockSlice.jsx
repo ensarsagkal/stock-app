@@ -21,6 +21,7 @@ const stockSlice = createSlice({
       state.loading=false
       state.firms=payload.data
     },
+    // addFirmSucces:(state,{payload})=>{}
     fetchFail: (state) => {
       state.loading = false;
       state.error = true;
