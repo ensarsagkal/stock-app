@@ -17,7 +17,7 @@ export const AddSchema = object({
 });
 
 const AddFirm = ({handleClose}) => {
-  const {addFirm}= useStockCalls()
+  const {addStock}= useStockCalls()
   return (
     <Formik
     initialValues={{
@@ -30,7 +30,7 @@ const AddFirm = ({handleClose}) => {
     validationSchema={AddSchema}
     onSubmit={(values, actions) => {
       //TODO login(post) istegi
-      addFirm(values);
+      addStock("firms",values);
       actions.resetForm();
       actions.setSubmitting(false);
       handleClose()

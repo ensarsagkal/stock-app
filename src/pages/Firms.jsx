@@ -6,6 +6,7 @@ import { useSelector } from "react-redux"
 import { Grid } from "@mui/material"
 import FirmCard from "../components/FirmCard"
 import ModalFirm from "../components/ModalFirm"
+import AddFirm from "../components/AddFirm"
 
 const Firms = () => {
   // const { getFirms, getSales } = useStockCalls()
@@ -23,8 +24,9 @@ const Firms = () => {
       <Typography variant="h4" color="error" mb={3}>
         Firms
       </Typography>
-      <Button variant="contained">New Firm</Button>
-      {/* <ModalFirm/> */}
+      {/* <Button variant="contained">New Firm</Button> */}
+      <ModalFirm/>
+      {/* <AddFirm/> */}
 
       <Grid container gap={2} mt={3} justifyContent={"center"}>
         {firms?.map((firm) => (
