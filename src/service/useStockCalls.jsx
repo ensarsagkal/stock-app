@@ -40,20 +40,6 @@ const useStockCalls = () => {
       toastErrorNotify(`${url} bilgileri çekilemedi.`)
     }
   }
-  const addStock = async (url = "firms", firmInfo) => {
-    dispatch(fetchStart())
-    try {
-       await axiosWithToken.post(`/${url}/`, firmInfo)
-     
-    
-     
-      getStocks(url)
-      toastSuccessNotify(`${url} bilgisi eklenmiştir.`)
-    } catch (error) {
-      dispatch(fetchFail())
-      toastErrorNotify(`${url} bilgileri çekilemedi.`)
-    }
-  }
 
   const deleteStock = async (url = "firms", id) => {
     dispatch(fetchStart())
@@ -67,7 +53,31 @@ const useStockCalls = () => {
     }
   }
 
-  return { getStocks, deleteStock,addStock }
+  const postStock = async (url = "firms", info) => {
+    dispatch(fetchStart())
+    try {
+      await axiosWithToken.post(`/${url}/`, info)
+      toastSuccessNotify(`${url} kayıdı eklenmiştir.`)
+      getStocks(url)
+    } catch (error) {
+      dispatch(fetchFail())
+      toastErrorNotify(`${url} kaydi eklenemiştir.`)
+    }
+  }
+
+  const putStock = async (url = "firms", info) => {
+    dispatch(fetchStart())
+    try {
+      await axiosWithToken.put(`/${url}/${info._id}`, info)
+      toastSuccessNotify(`${url} kayıdı güncellenmiştir..`)
+      getStocks(url)
+    } catch (error) {
+      dispatch(fetchFail())
+      toastErrorNotify(`${url} kaydi güncelenememiştir.`)
+    }
+  }
+
+  return { getStocks, deleteStock, postStock, putStock }
 }
 
 export default useStockCalls
