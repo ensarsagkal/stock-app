@@ -9,8 +9,7 @@ import EditIcon from "@mui/icons-material/Edit"
 import { btnStyle } from "../styles/globalStyles"
 import useStockCalls from "../service/useStockCalls"
 
-export default function FirmCard({ firm }) {
-  const { address, image, name, phone, _id } = firm
+export default function FirmCard({ firm, handleOpen, setInfo }) {
   const { deleteStock } = useStockCalls()
   return (
     <Card
@@ -27,30 +26,36 @@ export default function FirmCard({ firm }) {
     >
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {name}
+          {firm?.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {address}
+          {firm?.address}
         </Typography>
       </CardContent>
       <CardMedia
         component="img"
-        alt={name}
+        alt={firm?.name}
         height="140"
-        image={image}
+        image={firm?.image}
         sx={{ objectFit: "contain" }}
       />
 
       <Typography variant="body2" color="text.secondary">
-        {phone}
+        {firm?.phone}
       </Typography>
 
       <CardActions>
         <DeleteOutlineIcon
           sx={btnStyle}
-          onClick={() => deleteStock("firms", _id)}
+          onClick={() => deleteStock("firms", firm?._id)}
         />
-        <EditIcon sx={btnStyle} />
+        <EditIcon
+          sx={btnStyle}
+          onClick={() => {
+            handleOpen()
+            setInfo(firm)
+          }}
+        />
       </CardActions>
     </Card>
   )
